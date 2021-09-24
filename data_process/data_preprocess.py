@@ -23,6 +23,6 @@ class DataProcess(object):
 
     def get_schoolpointbyname(self, name):
         data = self.origin_data
-        point_x = data[data['name']==name]['point_x']
-        point_y = data[data['name']==name]['point_y']
+        point_x = data[data['name']==name]['point_x'].values[0]
+        point_y = data[data['name']==name]['point_y'].values[0]
         return (point_x, point_y)

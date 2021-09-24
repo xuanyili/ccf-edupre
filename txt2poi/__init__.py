@@ -1,1 +1,2 @@
-from .location_display import tianditu_display
+from .tianditu_loc import tianditu_api
+from .gaode_loc import gaode_api
