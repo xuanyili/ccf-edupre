@@ -26,3 +26,11 @@ class DataProcess(object):
         point_x = data[data['name']==name]['point_x'].values[0]
         point_y = data[data['name']==name]['point_y'].values[0]
         return (point_x, point_y)
+    
+    def get_allschoolinfo(self, type=None, area=None):
+        data = self.origin_data
+        if area != None:
+            data = data.groupby(['qxmc']).get_group(area)
+        if type != None:
+            data = data.groupby(['dj']).get_group(type)
+        return data[['name','point_x','point_y','qxmc']]
