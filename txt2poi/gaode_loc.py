@@ -5,6 +5,19 @@ import sys
 sys.path.append(sys.path[0]+"/..")
 from data_process import DataProcess
 
+types = {
+    '幼儿园': '141204',
+    '小学': '141203',
+    '中学': '141202',
+    '职业技术学校': '141206'
+}
+regions = {
+    '西湖区': '330106',
+    '余杭区': '330110',
+    '义乌市': '330782',
+    '德清县': '330521',
+    '海曙区': '330203'
+}
 class gaode_api(object):
     def __init__(self, key):
         self.key = key
@@ -137,3 +150,40 @@ class gaode_api(object):
     
     def get_allstoreloc(self):
         return self.allloc
+    
+    def get_poiinfo(self, type, region):
+        info = pd.DataFrame(columns=['name', 'address', 'gd_point_x', 'gd_point_y','region', 'dataType'])
+        url = 'https://restapi.amap.com/v5/place/text?parameters'
+        page_num = 1
+        while True:
+            params = {
+                'key': self.key,
+                'types': types[type],
+                'region': regions[region],
+                'city_limit': 'true',
+                'page_num': str(page_num),
+                'page_size': '25'
+            }
+
+            res = requests.get(url, params)
+            page_num +=1
+            result = res.json()
+            count = int(result['count'])
+            if count == 0:
+                break
+            pois = result['pois']
+            for index in range(0, count):
+                poi = pois[index]
+                [x, y] = poi['location'].split(',')
+                series = pd.Series({'name': poi['name'], 'address': poi['adname']+poi['address'], 
+                'gd_point_x': float(x), 'gd_point_y': float(y),'region': region, 'dataType': type})
+                info = info.append(series, ignore_index=True)
+        return info
+
+    def getallpoiinfo(self):
+        info = pd.DataFrame(columns=['name', 'address', 'gd_point_x', 'gd_point_y','region', 'dataType'])
+        for region in regions:
+            for type in types:
+                _info = self.get_poiinfo(type, region)
+                info = info.append(_info, ignore_index=True)
+        return info
