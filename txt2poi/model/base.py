@@ -67,12 +67,48 @@ class MLP(torch.nn.Module):
         x = F.relu(self.hidden4(self.hidden3(self.hidden2(self.hidden1(self.hidden(x))))))
         x = self.predict(x)
         return x
- 
+
+
+
+RADIUS_KM = 6378.1
+pi_on_180 = 0.017453292519943295
+
+def degrees_to_radians(deg):
+    pi_on_180 = 0.017453292519943295
+    return deg * pi_on_180
+
+def loss_haversine(observation, prediction):    
+    # obv_rad = torch.map_(observation, degrees_to_radians)
+    # prev_rad = torch.map_(prediction, degrees_to_radians)
+    obv_rad = observation * pi_on_180
+    prev_rad = prediction * pi_on_180
+
+    dlon_dlat = obv_rad - prev_rad 
+    v = dlon_dlat / 2
+    v = torch.sin(v)
+    v = v**2
+
+    a = v[:,1] + torch.cos(obv_rad[:,1]) * torch.cos(prev_rad[:,1]) * v[:,0] 
+
+    c = torch.sqrt(a)
+    c = 2* torch.arcsin(c)
+    c = c*RADIUS_KM
+    final = torch.sum(c)
+
+    #if you're interested in having MAE with the haversine distance in KM
+    #uncomment the following line
+    #final = final/tf.dtypes.cast(tf.shape(observation)[0], dtype= tf.float32)
+
+    return final
+
+
+
+
 model = MLP(2,64,2)  #输入节点1个，隐层节点8个，输出节点
 if torch.cuda.is_available():
     model.cuda()
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.00001)
-loss_func = torch.nn.MSELoss()
+# loss_func = loss_haversine()
 epochs = 5000
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 best_loss = 10000000000
@@ -84,9 +120,10 @@ for epoch in range(epochs):
             x = x.cuda()
             y = y.cuda()
         prediction = model(x)
-        loss = loss_func(prediction, y)
+        loss = loss_haversine(y, prediction)
         optimizer.zero_grad()
         loss.backward()
+        torch.nn.utils.clip_grad_value_(model.parameters(), 200)
         optimizer.step()
 
         # sys.stdout.write('[Train] epoch {0:2} step: {1:3} | loss: {2:3.4f}'.format(epoch, step, loss.item()) + '\r')
@@ -99,7 +136,7 @@ for epoch in range(epochs):
                 x = x.cuda()
                 y = y.cuda()
             prediction = model(x)
-            loss = loss_func(prediction, y)
+            loss = loss_haversine(y, prediction)
             if loss < best_loss:
                 best_loss = loss
                 best_predictions = prediction
