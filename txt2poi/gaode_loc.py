@@ -131,10 +131,8 @@ class gaode_api(object):
         with open(file, 'wb') as f:
             f.write(res.content)
     
-    def get_allcorrectloc(self):
-        process = DataProcess()
-        name = process.get_allschoolinfo()
-        loc, address1 = self.getlocbyname(name)
+    def get_allcorrectloc(self, info):
+        loc, address1 = self.getlocbyname(info)
         address2 = self.getaddressbyloc(loc)
         address = pd.concat([loc, address2], axis=1)
         self.allloc = address
@@ -175,7 +173,7 @@ class gaode_api(object):
             for index in range(0, count):
                 poi = pois[index]
                 [x, y] = poi['location'].split(',')
-                series = pd.Series({'name': poi['name'], 'address': poi['adname']+poi['address'], 
+                series = pd.Series({'name': poi['name'], 'address': poi['cityname']+poi['adname']+poi['address'], 
                 'gd_point_x': float(x), 'gd_point_y': float(y),'region': region, 'dataType': type})
                 info = info.append(series, ignore_index=True)
         return info

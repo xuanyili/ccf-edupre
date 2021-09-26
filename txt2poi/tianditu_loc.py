@@ -1,5 +1,7 @@
 import requests
 import pandas as pd
+from .gaode_loc import gaode_api
+from .basic import compare_name
 
 specifys = {
     '西湖区': '156330106',
@@ -90,7 +92,8 @@ class tianditu_api(object):
                 'queryType': '13',
                 'start': str(i),
                 'count': '300',
-                'dataTypes': dataTypes[dataType]
+                'dataTypes': dataTypes[dataType],
+                'show': '2'
             }
             params = {
             'tk': self.key,
@@ -107,7 +110,8 @@ class tianditu_api(object):
             for index in range(0, count):
                 poi = pois[index]
                 [x, y] = poi['lonlat'].split(',')
-                series = pd.Series({'name': poi['name'], 'address': poi['address'], 
+                address = poi['province'] + poi['city'] + poi['county'] + poi['address']
+                series = pd.Series({'name': poi['name'], 'address': address, 
                 'point_x': float(x), 'point_y': float(y),'specify': specify, 'dataType': dataType})
                 info = info.append(series, ignore_index=True)
         
@@ -120,3 +124,40 @@ class tianditu_api(object):
                 _info = self.getpoiinfo(specify, datatype)
                 info = info.append(_info, ignore_index=True)
         return info
+
+    def getallcorrect_gaodepoiinfo(self, key):
+        info1 = pd.DataFrame(columns=['name', 'address', 'point_x', 'point_y','specify', 'dataType'])
+        info2 = pd.DataFrame(columns=['gd_point_x','gd_point_y'])
+        self.gaode_unmatch_g = pd.DataFrame(columns=['name', 'address', 'gd_point_x', 'gd_point_y','region', 'dataType'])
+        self.gaode_unmatch_t = pd.DataFrame(columns=['name', 'address', 'point_x', 'point_y','specify', 'dataType'])
+        gaode = gaode_api(key)
+        for specify in specifys:
+            for datatype in dataTypes:
+                tianditu_info = self.getpoiinfo(specify, datatype)
+                if datatype == '中专' or datatype == '大专':
+                    type = '职业技术学校'
+                else:
+                    type = datatype
+                gaode_info = gaode.get_poiinfo(type, specify)
+                for i, row_t in tianditu_info.iterrows():
+                    for j, row_g in gaode_info.iterrows():
+                        similar1 = compare_name(row_t['address'], row_g['address'])
+                        similar2 = compare_name(row_t['name'], row_g['name'])
+                        #print(row['format_address1'], row['format_address2'], similar)
+                        if similar1 >0.99 or similar2 >0.99 or (similar1 + similar2) > 1.75:
+                            print(row_t['address']+row_t['name'], row_g['address']+row_g['name'],similar1, similar2)
+                            info1 = info1.append(row_t, ignore_index=True)
+                            info2 = info2.append(row_g[['gd_point_x','gd_point_y']], ignore_index=True)
+                            gaode_info = gaode_info.drop(index = j)
+                            tianditu_info = tianditu_info.drop(index = i)
+                            break
+                self.gaode_unmatch_g = self.gaode_unmatch_g.append(gaode_info, ignore_index=True)
+                self.gaode_unmatch_t = self.gaode_unmatch_g.append(tianditu_info, ignore_index=True)
+        info = pd.concat([info1, info2], axis=1)
+        return info
+
+    def get_unmatch_info_t(self):
+        return self.gaode_unmatch_t
+    
+    def get_unmatch_info_g(self):
+        return self.gaode_unmatch_g

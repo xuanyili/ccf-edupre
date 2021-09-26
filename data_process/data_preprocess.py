@@ -33,4 +33,4 @@ class DataProcess(object):
             data = data.groupby(['qxmc']).get_group(area)
         if type != None:
             data = data.groupby(['dj']).get_group(type)
-        return data[['name','point_x','point_y','qxmc']]
+        return data[['name','address','point_x','point_y','qxmc']]
