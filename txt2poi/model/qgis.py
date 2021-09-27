@@ -27,8 +27,9 @@ import math
 from math import sin, cos, sqrt, fabs, atan2
 from math import pi as PI
 # from numba import jit
- 
- 
+from haversine import haversine
+import pandas as pd
+from tqdm import tqdm
 # =================================================sshuair=============================================================
 # define ellipsoid
 a = 6378245.0
@@ -75,6 +76,7 @@ def wgs2gcj(wgsLon, wgsLat):
  
 def gcj2wgs(gcjLon, gcjLat):
     g0 = (gcjLon, gcjLat)
+    print(g0)
     w0 = g0
     g1 = wgs2gcj(w0[0], w0[1])
     # w1 = w0 - (g1 - g0)
@@ -125,5 +127,16 @@ if __name__ == '__main__':
     # trans = WGS2GCJ()
     print(wgs2gcj(120.13969,30.28846))
     print(gcj2wgs(120.144724,30.286281))
- 
+    s = []
+    data_df = pd.read_csv('/home/fjb/ccf-edupre/data/info/matched_gdpoi_point.csv', encoding='gbk')
+    for i, row in tqdm(data_df.iterrows()):
+        a = row['point_x']
+        b = row['point_y']
+        c = row['gd_point_x']
+        d = row['gd_point_y']
+        print(a,b,c,d)
+        c,d = gcj2wgs(c,d)
+        s.append(haversine((a,b), (c,d)) * 1000)
+    data_df['s'] = s
+    print(data_df['s'].describe())
     # gcj2wgs

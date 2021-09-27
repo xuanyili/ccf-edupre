@@ -1,6 +1,9 @@
 import math
-from math import sin, cos, sqrt, fabs, atan2
+from math import sin, cos, sqrt, fabs, atan2, asin
 from math import pi as PI
+import numpy as np
+import pandas as pd
+from haversine import haversine
 
 # Beijing54 Geodetic coordinate system (Krasovsky reference ellipsoid)
 kKRASOVSKY_A = 6378245.0				 # equatorial radius [unit: meter]
@@ -11,7 +14,6 @@ PI = 3.14159265358979323846   # π
 
 kDEG2RAD = PI / 180.0
 kRAD2DEG = 180.0 / PI
-
 
 # /**
 #  *  \brief Angle unit transform, degree to radian
@@ -385,9 +387,22 @@ if __name__ == '__main__':
     # wgs2gcj
     # coord = (112, 40)
     # trans = WGS2GCJ()
-    print(Wgs2Gcj(120.13969, 30.28846))
-    print(Gcj2Wgs_SimpleIteration(120.144724, 30.286281))
-    print(Gcj2Wgs_NumbericDiff(120.144724, 30.286281))
-    print(Gcj2Wgs_AnalyticDiff(120.144724, 30.286281))
-
+    # print(120.189984,29.30907)
+    # a,b = Wgs2Gcj(120.19,29.31)
+    # print(round(a, 6), round(b,6))
+    # a,b = Gcj2Wgs_SimpleIteration(120.144724, 30.286281)
+    # print(round(a, 6), round(b,6))
+    # a,b = Gcj2Wgs_NumbericDiff(120.144724, 30.286281)
+    # print(round(a, 6), round(b,6))
+    s = []
+    data_df = pd.read_csv('/home/fjb/ccf-edupre/data/info/matched_gdpoi_point.csv', encoding='gbk')
+    for i, row in data_df.iterrows():
+        a = row['point_x']
+        b = row['point_y']
+        c = row['gd_point_x']
+        d = row['gd_point_y']
+        c,d = Gcj2Wgs_AnalyticDiff(c,d)
+        s.append(haversine((a,b), (c,d)) * 1000)
+    data_df['s'] = s
+    print(data_df['s'].describe())
     # gcj2wgs
