@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from haversine import haversine
 
+# https://blog.csdn.net/gudufuyun/article/details/106738942
+# https://github.com/kikkimo/WgsToGcj
 # Beijing54 Geodetic coordinate system (Krasovsky reference ellipsoid)
 kKRASOVSKY_A = 6378245.0				 # equatorial radius [unit: meter]
 kKRASOVSKY_B = 6356863.0187730473  # polar radius

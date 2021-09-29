@@ -101,10 +101,13 @@ def loss_haversine(observation, prediction):
 
     return final
 
+loc1 = torch.FloatTensor([[120.08873, 30.1015]])
+loc2 = torch.FloatTensor([[120.10951, 30.28623]])
 
+print('***')
+print(loss_haversine(loc1, loc2))
 
-
-model = MLP(2,64,2)  #输入节点1个，隐层节点8个，输出节点
+model = MLP(2,8,2)  #输入节点1个，隐层节点8个，输出节点
 if torch.cuda.is_available():
     model.cuda()
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.00001)
@@ -120,6 +123,7 @@ for epoch in range(epochs):
             x = x.cuda()
             y = y.cuda()
         prediction = model(x)
+        #print(x)
         loss = loss_haversine(y, prediction)
         optimizer.zero_grad()
         loss.backward()

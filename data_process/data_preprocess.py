@@ -3,7 +3,7 @@ import numpy as np
 
 class DataProcess(object):
     def __init__(self):
-        self.origin_data = pd.read_csv("../../data/schoolinfo.csv", encoding='gbk')
+        self.origin_data = pd.read_csv("../data/schoolinfo.csv", encoding='gbk')
     
     def get_allschoolname(self, type=None, area=None):
         data = self.origin_data
@@ -33,4 +33,4 @@ class DataProcess(object):
             data = data.groupby(['qxmc']).get_group(area)
         if type != None:
             data = data.groupby(['dj']).get_group(type)
-        return data[['name','address','point_x','point_y','qxmc']]
+        return data

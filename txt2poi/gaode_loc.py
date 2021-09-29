@@ -1,9 +1,10 @@
 import requests
 import pandas as pd
-from .basic import compare_name
+from .basic import compare_name, get_distance_byloc
 import sys
 sys.path.append(sys.path[0]+"/..")
 from data_process import DataProcess
+from .model.gjc2wsg import Gcj2Wgs_SimpleIteration
 
 types = {
     '幼儿园': '141204',
@@ -140,7 +141,7 @@ class gaode_api(object):
         for i, row in address.iterrows():
             similar = compare_name(row['name'], row['format_address2'])
             #print(row['format_address1'], row['format_address2'], similar)
-            if similar < 0.8:
+            if similar < 0.9:
                 print(row['name'], row['format_address2'], similar)
                 address = address.drop(index = i)
         self.allcorrectloc = address.reset_index()
@@ -185,3 +186,24 @@ class gaode_api(object):
                 _info = self.get_poiinfo(type, region)
                 info = info.append(_info, ignore_index=True)
         return info
+    
+    def verify_loc_by_name(self, name, loc_o):
+    #  1:验证成功; -1:验证失败
+        locs, _ = self.__getlocbyname(name)
+        if len(locs) == 0:
+            return -1, (0, 0), ''
+        loc = (float(locs['gd_point_x']), float(locs['gd_point_y']))
+        x, y = Gcj2Wgs_SimpleIteration(loc[0], loc[1])
+        loc_v = (x, y)
+        address = self.__getaddressbyloc(str(loc[0])+','+str(loc[1]))
+        add = address['format_address2'][0]
+        similar = compare_name(name, add)
+        distance = get_distance_byloc(loc_v, loc_o)
+        if distance < 50:
+            result = 1
+        elif similar > 0.95:
+            print("地址1：{}；地址2:{}；相似度：{}".format(name, address, similar))
+            result = 0
+        else:
+            result = -1
+        return result, loc_v, add

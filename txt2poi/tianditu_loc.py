@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 from .gaode_loc import gaode_api
-from .basic import compare_name
+from .basic import compare_name, get_distance_byloc
 
 specifys = {
     '西湖区': '156330106',
@@ -35,7 +35,7 @@ class tianditu_api(object):
         lon = loc['lon']
         lat = loc['lat']
 
-        return (lon, lat)
+        return (lon, lat), res.json()
 
     def getaddressbyloc(self, loc):
         url = 'http://api.tianditu.gov.cn/geocoder?parameters'
@@ -46,12 +46,15 @@ class tianditu_api(object):
             'type': 'geocode'
         }
         res=requests.get(url, params)
+        #print(res.json())
         result = res.json()['result']
+        comp = result['addressComponent']
+        name = comp['poi']
         address = result['formatted_address']
 
-        return address
+        return address, name
 
-    def displaybyloc(self, mid, loc, file="tianditu.png", width=500, height=500, zoom=15):
+    def displaybyloc(self, mid, loc, file="tianditu.png", width=500, height=500, zoom=18):
         url = 'http://api.tianditu.gov.cn/staticimage?parameters'
         params = {
             'tk': self.key,
@@ -152,7 +155,7 @@ class tianditu_api(object):
                             tianditu_info = tianditu_info.drop(index = i)
                             break
                 self.gaode_unmatch_g = self.gaode_unmatch_g.append(gaode_info, ignore_index=True)
-                self.gaode_unmatch_t = self.gaode_unmatch_g.append(tianditu_info, ignore_index=True)
+                self.gaode_unmatch_t = self.gaode_unmatch_t.append(tianditu_info, ignore_index=True)
         info = pd.concat([info1, info2], axis=1)
         return info
 
@@ -161,3 +164,18 @@ class tianditu_api(object):
     
     def get_unmatch_info_g(self):
         return self.gaode_unmatch_g
+
+    def verify_loc_by_name(self, name, loc):
+        #  1:验证成功; -1:验证失败
+        loc_v, _ = self.getlocbyname(name)
+        address, name_v = self.getaddressbyloc(loc_v)
+        similar = compare_name(name, name_v)
+        distance = get_distance_byloc(loc_v, loc)
+        if distance < 50:
+            result = 1
+        elif similar > 0.95:
+            print("地址1：{}；地址2{}；相似度：{}".format(name, name_v, similar))
+            result = 0
+        else:
+            result = -1
+        return result, loc_v, address
