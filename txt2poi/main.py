@@ -77,7 +77,7 @@ def _check_correct_infobypoi(data, poidata, type = 'tdt'):
          'verify_address': _name, 'o_point_x': _x, 'o_point_y': _y})
         uncorrect_locinfo = uncorrect_locinfo.append(data, ignore_index=True)
         uncorrect_series = uncorrect_series.append(series, ignore_index=True)
-    else:
+    elif correct == False:
         notsure_locinfo = notsure_locinfo.append(data, ignore_index=True)
     correct_locinfo = pd.concat([correct_locinfo, correct_series], axis=1)
     uncorrect_locinfo = pd.concat([uncorrect_locinfo, uncorrect_series], axis=1)
