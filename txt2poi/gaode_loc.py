@@ -19,6 +19,11 @@ regions = {
     '德清县': '330521',
     '海曙区': '330203'
 }
+
+    
+type_gd = '141200 | 141201 | 141202 | 141203 | 141204 | 141206'
+city_gd = '330106 | 330110 | 330782 | 330521 | 330203'
+
 class gaode_api(object):
     def __init__(self, key):
         self.key = key
@@ -189,21 +194,53 @@ class gaode_api(object):
     
     def verify_loc_by_name(self, name, loc_o):
     #  1:验证成功; -1:验证失败
-        locs, _ = self.__getlocbyname(name)
-        if len(locs) == 0:
-            return -1, (0, 0), ''
-        loc = (float(locs['gd_point_x']), float(locs['gd_point_y']))
-        x, y = Gcj2Wgs_SimpleIteration(loc[0], loc[1])
-        loc_v = (x, y)
-        address = self.__getaddressbyloc(str(loc[0])+','+str(loc[1]))
-        add = address['format_address2'][0]
-        similar = compare_name(name, add)
-        distance = get_distance_byloc(loc_v, loc_o)
-        if distance < 50:
-            result = 1
-        elif similar > 0.95:
-            print("地址1：{}；地址2:{}；相似度：{}".format(name, address, similar))
-            result = 0
+        result, loc_v, add = self.getloc_byinputtips(name)
+        if result == 1:
+            x, y = Gcj2Wgs_SimpleIteration(loc_v[0], loc_v[1])
+            loc_v = (x, y)
+            distance = get_distance_byloc(loc_v, loc_o)
+            if distance < 50:
+                result = 1
+            else:
+                result = 0
         else:
-            result = -1
+            locs, _ = self.__getlocbyname(name)
+            if len(locs) == 0:
+                return -1, (0, 0), ''
+            loc = (float(locs['gd_point_x']), float(locs['gd_point_y']))
+            x, y = Gcj2Wgs_SimpleIteration(loc[0], loc[1])
+            loc_v = (x, y)
+            address = self.__getaddressbyloc(str(loc[0])+','+str(loc[1]))
+            add = address['format_address2'][0]
+            similar = compare_name(name, add)
+            distance = get_distance_byloc(loc_v, loc_o)
+            if distance < 50:
+                result = 1
+            elif similar > 0.95:
+                print("地址1：{}；地址2:{}；相似度：{}".format(name, address, similar))
+                result = 0
+            else:
+                result = -1
         return result, loc_v, add
+
+
+    def getloc_byinputtips(self, keyword):
+        url = 'https://restapi.amap.com/v3/assistant/inputtips?parameters'
+        params = {
+            'key': self.key,
+            'keywords': keyword,
+            'type': type_gd,
+            'city': city_gd,
+            'citylimit': 'true'
+        }
+        res = requests.get(url, params)
+        result = res.json()
+        count = result['count']
+        if count == 0:
+            return -1, (0, 0), ''
+        else:
+            tip = result['tips'][0]
+            [x,y] = tip['location'].split(',')
+            add = tip['name']
+            loc_v = (float(x), float(y))
+            return 1, loc_v, add
