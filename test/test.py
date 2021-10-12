@@ -1,14 +1,16 @@
 
 import sys
+
 sys.path.append(sys.path[0]+"/..")
 
 import pandas as pd
 
-from txt2poi import tianditu_api, gaode_api, check_correct_infobygetgdaddress, check_correct_bygaodepoi, get_distance_byloc, check_correct_origininfo, check_correct_bytianditupoi
+from txt2poi import tianditu_api, gaode_api, baidu_api, check_correct_bybaidupoi, check_correct_infobygetbdaddress, check_correct_infobygetgdaddress, check_correct_bygaodepoi, get_distance_byloc, check_correct_origininfo, check_correct_bytianditupoi
 from data_process import DataProcess
 
 tianditukey = '2423a38b3af5569af8aa521babc5e349'
 gaodekey = '6977ecc8c25093a80583a1cb5b2e6155'
+baidukey = 'v4YOvobXA6CKDXzW2GjcrxAggIqByx7U'
 
 process = DataProcess()
 data = process.get_allschoolinfo()
@@ -55,9 +57,27 @@ print("step4:获取高德POI信息校验完成，正确坐标{}个，错误坐�
 correct_locinfo = correct_locinfo.append(correct4, ignore_index=True)
 uncorrect_locinfo = uncorrect_locinfo.append(uncorrect4, ignore_index=True)
 
+print("step5:百度逆地址编码校验数据集坐标是否准确，待校验数据集{}个".format(len(unsure4)))
+correct5, uncorrect5, unsure5 = check_correct_infobygetbdaddress(unsure4)
+correct5['judge_way'] = 'bd'
+uncorrect5['judge_way'] = 'bd'
+print("step5:百度逆地址编码校验完成，正确坐标{}个，错误坐标{}个，未匹配坐标{}个"
+.format(len(correct5), len(uncorrect5), len(unsure5)))
+correct_locinfo = correct_locinfo.append(correct5, ignore_index=True)
+uncorrect_locinfo = uncorrect_locinfo.append(uncorrect5, ignore_index=True)
 
-unsure4.to_csv('../data/verify_info/verify_unsure_info.csv', encoding='gbk')
+bdpoiinfo = baidu_api(baidukey).getallpoiinfo()
+print("step6:获取百度POI信息校验数据集坐标是否准确，待校验数据{}个".format(len(unsure5)))
+correct6, uncorrect6, unsure6 = check_correct_bybaidupoi(unsure5, bdpoiinfo)
+correct6['judge_way'] = 'bdpoi'
+uncorrect6['judge_way'] = 'bdpoi'
+print("step6:获取百度POI信息校验完成，正确坐标{}个，错误坐标{}个，未匹配坐标{}个"
+.format(len(correct6), len(uncorrect6), len(unsure6)))
+correct_locinfo = correct_locinfo.append(correct6, ignore_index=True)
+uncorrect_locinfo = uncorrect_locinfo.append(uncorrect6, ignore_index=True)
+
+unsure6.to_csv('../data/verify_info/verify_unsure_info.csv', encoding='gbk')
 correct_locinfo.to_csv('../data/verify_info/verify_correct_info.csv', encoding='gbk')
 uncorrect_locinfo.to_csv('../data/verify_info/verify_uncorrect_info.csv', encoding='gbk')
 print("验证结束，正确坐标{}个，错误坐标{}个，未匹配坐标{}个"
-.format(len(correct_locinfo), len(uncorrect_locinfo), len(unsure4)))
+.format(len(correct_locinfo), len(uncorrect_locinfo), len(unsure6)))
