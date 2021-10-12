@@ -1,35 +1,4 @@
-/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/basic.py:29: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
 step1:天地图逆地址编码校验数据集坐标是否准确，原数据集1199个
-地址1：杭州市余杭区英特外国语学校；地址2杭州英特外国语学校；相似度：1.0
-地址1：宁波市海曙区古林镇薛家小学；地址2古林镇薛家小学；相似度：1.0
-地址1：宁波市海曙区石碶街道实验小学；地址2海曙区石碶街道实验小学；相似度：1.0
-地址1：杭州市余杭区径山镇双溪幼儿园；地址2径山镇双溪幼儿园；相似度：1.0
-地址1：义乌市金城高尔夫幼儿园；地址2金城高尔夫幼儿园；相似度：1.0
-地址1：杭州市余杭区育海外国语学校；地址2杭州育海外国语学校；相似度：1.0
-地址1：义乌市后宅街道鹤田幼儿园；地址2后宅街道鹤田幼儿园；相似度：1.0
-地址1：义乌公学；地址2义乌公学；相似度：1.0
-地址1：杭州市余杭区北湖绿洲幼儿园；地址2北湖绿洲幼儿园；相似度：1.0
-地址1：杭州市余杭区蒲公英学校；地址2杭州蒲公英学校；相似度：1.0
-地址1：宁波市海曙区镇明中心小学；地址2宁波市镇明中心小学；相似度：1.0
-地址1：浙江新世纪经贸专修学院；地址2浙江新世纪经贸专修学院；相似度：1.0
-地址1：杭州市余杭区未来科技城海云幼儿园；地址2余杭区未来科技城海曙幼儿园；相似度：0.9664027344393833
-地址1：杭州市余杭区未来科技城海曙小学；地址2余杭区未来科技城海曙小学；相似度：1.0
-地址1：杭州市余杭区凤凰幼儿园；地址2余杭区凤凰幼儿园；相似度：1.0
-地址1：宁波市海曙区古林镇中心小学；地址2古林镇中心小学；相似度：1.0
-地址1：宁波市古林职业高级中学；地址2鄞州区古林职业高级中学；相似度：0.9674382358729127
-地址1：浙江师范大学附属义乌实验学校；地址2浙江师范大学附属义乌实验学校；相似度：1.0
-地址1：宁波市海曙区古林镇蜃蛟小学；地址2海曙区古林镇蜃蛟小学；相似度：1.0
-地址1：宁波市红旗幼儿园；地址2宁波红旗幼儿园；相似度：1.0
-地址1：义乌市香山小学教育集团；地址2义乌市香山小学教育集团杨村校区；相似度：0.9588814623711364
-地址1：杭州市学军小学；地址2杭州市学军小学；相似度：1.0
-地址1：浙江省交通运输厅幼儿园；地址2浙江省交通运输厅幼儿园；相似度：1.0
-地址1：宁波市海曙区德英乐幼儿园；地址2宁波市海曙区德英乐幼儿园；相似度：1.0
-地址1：宁波市市级机关第二幼儿园；地址2宁波市市级机关第二幼儿园；相似度：1.0
-地址1：宁波市闻裕顺幼儿园；地址2闻裕顺幼儿园；相似度：1.0
-地址1：宁波市海曙区高桥镇博泽学校；地址2高桥镇博泽学校；相似度：1.0
-地址1：宁波市鄞江中学；地址2鄞江中学；相似度：1.0
-地址1：宁波市外经贸幼儿园；地址2宁波市外经贸幼儿园；相似度：1.0
 Traceback (most recent call last):
   File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 174, in _new_conn
     conn = connection.create_connection(
@@ -62,7 +31,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 186, in _new_conn
     raise NewConnectionError(
-urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f5672d7bee0>: Failed to establish a new connection: [Errno -2] Name or service not known
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f945e48b520>: Failed to establish a new connection: [Errno -2] Name or service not known
 
 During handling of the above exception, another exception occurred:
 
@@ -73,16 +42,16 @@ Traceback (most recent call last):
     retries = retries.increment(
   File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/util/retry.py", line 574, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&ds=%7B%27keyWord%27%3A+%27%E6%9D%AD%E5%B7%9E%E5%B8%82%E4%BD%99%E6%9D%AD%E5%8C%BA%E5%8D%97%E5%AE%89%E5%B9%BC%E5%84%BF%E5%9B%AD%27%7D (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f5672d7bee0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&ds=%7B%27keyWord%27%3A+%27%E4%B9%89%E4%B9%8C%E4%B8%AD%E6%9C%AA%E6%91%87%E7%AF%AE%E5%B9%BC%E5%84%BF%E5%9B%AD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%27%7D (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f945e48b520>: Failed to establish a new connection: [Errno -2] Name or service not known'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/lixuanyi/code/compete/ccf-edupre/test/test.py", line 19, in <module>
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/test.py", line 21, in <module>
     correct1, uncorrect1, unsure1 = check_correct_origininfo(data)
   File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/main.py", line 22, in check_correct_origininfo
     result, loc_v, address = tianditu.verify_loc_by_name(row_t['name'], loc)
-  File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/tianditu_loc.py", line 170, in verify_loc_by_name
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/tianditu_loc.py", line 175, in verify_loc_by_name
     loc_v, _ = self.getlocbyname(name)
   File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/tianditu_loc.py", line 33, in getlocbyname
     res=requests.get(url, params)
@@ -96,4 +65,4 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/adapters.py", line 516, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&ds=%7B%27keyWord%27%3A+%27%E6%9D%AD%E5%B7%9E%E5%B8%82%E4%BD%99%E6%9D%AD%E5%8C%BA%E5%8D%97%E5%AE%89%E5%B9%BC%E5%84%BF%E5%9B%AD%27%7D (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f5672d7bee0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&ds=%7B%27keyWord%27%3A+%27%E4%B9%89%E4%B9%8C%E4%B8%AD%E6%9C%AA%E6%91%87%E7%AF%AE%E5%B9%BC%E5%84%BF%E5%9B%AD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%27%7D (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f945e48b520>: Failed to establish a new connection: [Errno -2] Name or service not known'))

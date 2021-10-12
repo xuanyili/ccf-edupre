@@ -12,9 +12,11 @@ gaodekey = '6977ecc8c25093a80583a1cb5b2e6155'
 
 process = DataProcess()
 data = process.get_allschoolinfo()
+# data = pd.read_csv("../data/verify_info/verify_unsure_info.csv", encoding='gbk')
 correct_locinfo = pd.DataFrame()
 uncorrect_locinfo = pd.DataFrame()
-
+# correct_locinfo = pd.read_csv("../data/verify_info/verify_correct_info.csv", encoding='gbk')
+# uncorrect_locinfo = pd.read_csv("../data/verify_info/verify_uncorrect_info.csv", encoding='gbk')
 print("step1:天地图逆地址编码校验数据集坐标是否准确，原数据集{}个".format(len(data)))
 correct1, uncorrect1, unsure1 = check_correct_origininfo(data)
 correct1['judge_way'] = 'tdt'
@@ -52,6 +54,7 @@ print("step4:获取高德POI信息校验完成，正确坐标{}个，错误坐�
 .format(len(correct4), len(uncorrect4), len(unsure4)))
 correct_locinfo = correct_locinfo.append(correct4, ignore_index=True)
 uncorrect_locinfo = uncorrect_locinfo.append(uncorrect4, ignore_index=True)
+
 
 unsure4.to_csv('../data/verify_info/verify_unsure_info.csv', encoding='gbk')
 correct_locinfo.to_csv('../data/verify_info/verify_correct_info.csv', encoding='gbk')

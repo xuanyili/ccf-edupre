@@ -43,6 +43,7 @@ class gaode_api(object):
         result = res.json()
         if result['status'] == 0:
             print("ERROR:{}".format(result['info']))
+            res.close()
             return locs, addresses
         
         else:
@@ -62,6 +63,7 @@ class gaode_api(object):
                 addresses = addresses.append(series_add, ignore_index=True)
                 locs=locs.append(series_loc, ignore_index=True)
                 #print(geocode['location'], locs)
+        res.close()
         return locs, addresses
 
     def getlocbyname(self, name):
@@ -97,6 +99,7 @@ class gaode_api(object):
         result = res.json()
         if result['status'] == 0:
             print("ERROR:{}".format(result['info']))
+            res.close()
             return addresses
         
         else:
@@ -107,7 +110,7 @@ class gaode_api(object):
                 regeocode = regeocodes[i]
                 series = pd.Series({'format_address2': regeocode['formatted_address']})
                 addresses=addresses.append(series, ignore_index=True)
-
+        res.close()
         return addresses
 
     def getaddressbyloc(self, loc):
@@ -136,6 +139,7 @@ class gaode_api(object):
         res=requests.get(url, params)
         with open(file, 'wb') as f:
             f.write(res.content)
+        res.close()
     
     def get_allcorrectloc(self, info):
         loc, address1 = self.getlocbyname(info)
@@ -182,6 +186,7 @@ class gaode_api(object):
                 series = pd.Series({'name': poi['name'], 'address': poi['cityname']+poi['adname']+poi['address'], 
                 'gd_point_x': float(x), 'gd_point_y': float(y),'region': region, 'dataType': type})
                 info = info.append(series, ignore_index=True)
+        res.close()
         return info
 
     def getallpoiinfo(self):
@@ -199,10 +204,14 @@ class gaode_api(object):
             x, y = Gcj2Wgs_SimpleIteration(loc_v[0], loc_v[1])
             loc_v = (x, y)
             distance = get_distance_byloc(loc_v, loc_o)
-            if distance < 50:
+            similar = compare_name(name, add)
+            if distance < 60:
                 result = 1
-            else:
+            elif similar > 0.95:
+                print("地址1：{}；地址2:{}；相似度：{}".format(name, add, similar))
                 result = 0
+            else:
+                result = -1
         else:
             locs, _ = self.__getlocbyname(name)
             if len(locs) == 0:
@@ -214,10 +223,10 @@ class gaode_api(object):
             add = address['format_address2'][0]
             similar = compare_name(name, add)
             distance = get_distance_byloc(loc_v, loc_o)
-            if distance < 50:
+            if distance < 60:
                 result = 1
             elif similar > 0.95:
-                print("地址1：{}；地址2:{}；相似度：{}".format(name, address, similar))
+                print("地址1：{}；地址2:{}；相似度：{}".format(name, add, similar))
                 result = 0
             else:
                 result = -1
@@ -236,11 +245,13 @@ class gaode_api(object):
         res = requests.get(url, params)
         result = res.json()
         count = result['count']
-        if count == 0:
+        if count == '0':
+            res.close()
             return -1, (0, 0), ''
         else:
             tip = result['tips'][0]
             [x,y] = tip['location'].split(',')
             add = tip['name']
             loc_v = (float(x), float(y))
+            res.close()
             return 1, loc_v, add

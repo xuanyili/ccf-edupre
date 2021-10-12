@@ -34,8 +34,9 @@ class tianditu_api(object):
         loc = res.json()['location']
         lon = loc['lon']
         lat = loc['lat']
-
-        return (lon, lat), res.json()
+        result = res.json()
+        res.close()
+        return (lon, lat), result
 
     def getaddressbyloc(self, loc):
         url = 'http://api.tianditu.gov.cn/geocoder?parameters'
@@ -52,6 +53,7 @@ class tianditu_api(object):
         name = comp['poi']
         address = result['formatted_address']
 
+        res.close()
         return address, name
 
     def displaybyloc(self, mid, loc, file="tianditu.png", width=500, height=500, zoom=18):
@@ -68,6 +70,7 @@ class tianditu_api(object):
         res=requests.get(url, params)
         with open(file, 'wb') as f:
             f.write(res.content)
+        res.close()
     
     def getpoiinfo(self, specify, dataType):
         info = pd.DataFrame(columns=['name', 'address', 'point_x', 'point_y','specify', 'dataType'])
@@ -89,6 +92,7 @@ class tianditu_api(object):
         result = res.json()
         counts = int(result['count'])
         times = int(counts/300)
+        res.close()
         for i in range(0, times + 1):
             postStr = {
                 'specify': specifys[specify],
@@ -117,6 +121,7 @@ class tianditu_api(object):
                 series = pd.Series({'name': poi['name'], 'address': address, 
                 'point_x': float(x), 'point_y': float(y),'specify': specify, 'dataType': dataType})
                 info = info.append(series, ignore_index=True)
+            res.close()
         
         return info
 

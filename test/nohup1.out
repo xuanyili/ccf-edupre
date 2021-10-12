@@ -1,151 +1,284 @@
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
+/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/basic.py:29: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
   return  doc1.similarity(doc2)
 step1:天地图逆地址编码校验数据集坐标是否准确，原数据集1199个
-step1:天地图逆地址编码校验完成，正确坐标436个，错误坐标104个，未匹配坐标659个
-step2:获取天地图POI信息校验数据集坐标是否准确，待校验数据659个
-step2:获取天地图POI信息校验完成，正确坐标65个，错误坐标207个，未匹配坐标452个
-step3:高德逆地址编码校验数据集坐标是否准确，待校验数据集452个
-step3:高德逆地址编码校验完成，正确坐标140个，错误坐标47个，未匹配坐标265个
-step4:获取高德POI信息校验数据集坐标是否准确，待校验数据265个
-step4:获取高德POI信息校验完成，正确坐标19个，错误坐标56个，未匹配坐标209个
-验证结束，正确坐标660个，错误坐标414个，未匹配坐标209个
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
+地址1：杭州市余杭区英特外国语学校；地址2杭州英特外国语学校；相似度：1.0
+地址1：浙江省杭州第七中学；地址2浙江省杭州第七中学；相似度：1.0
+地址1：宁波市海曙区古林镇薛家小学；地址2古林镇薛家小学；相似度：1.0
+地址1：宁波市海曙区石碶街道实验小学；地址2海曙区石碶街道实验小学；相似度：1.0
+地址1：杭州市余杭区径山镇双溪幼儿园；地址2径山镇双溪幼儿园；相似度：1.0
+地址1：义乌市金城高尔夫幼儿园；地址2金城高尔夫幼儿园；相似度：1.0
+地址1：杭州市余杭区育海外国语学校；地址2杭州育海外国语学校；相似度：1.0
+地址1：义乌市后宅街道鹤田幼儿园；地址2后宅街道鹤田幼儿园；相似度：1.0
+地址1：义乌公学；地址2义乌公学；相似度：1.0
+地址1：杭州市余杭区北湖绿洲幼儿园；地址2北湖绿洲幼儿园；相似度：1.0
+地址1：杭州市余杭区蒲公英学校；地址2杭州蒲公英学校；相似度：1.0
+地址1：宁波市海曙区镇明中心小学；地址2宁波市镇明中心小学；相似度：1.0
+地址1：浙江新世纪经贸专修学院；地址2浙江新世纪经贸专修学院；相似度：1.0
+地址1：杭州市余杭区未来科技城海云幼儿园；地址2余杭区未来科技城海曙幼儿园；相似度：0.9664027344393833
+地址1：杭州市余杭区未来科技城海曙小学；地址2余杭区未来科技城海曙小学；相似度：1.0
+地址1：杭州市余杭区凤凰幼儿园；地址2余杭区凤凰幼儿园；相似度：1.0
+地址1：宁波市海曙区古林镇中心小学；地址2古林镇中心小学；相似度：1.0
+地址1：浙江师范大学附属义乌实验学校；地址2浙江师范大学附属义乌实验学校；相似度：1.0
+地址1：宁波市海曙区古林镇蜃蛟小学；地址2海曙区古林镇蜃蛟小学；相似度：1.0
+地址1：宁波市红旗幼儿园；地址2宁波红旗幼儿园；相似度：1.0
+地址1：义乌市香山小学教育集团；地址2义乌市香山小学教育集团杨村校区；相似度：0.9588814623711364
+地址1：杭州市学军小学；地址2杭州市学军小学；相似度：1.0
+地址1：浙江省交通运输厅幼儿园；地址2浙江省交通运输厅幼儿园；相似度：1.0
+地址1：宁波市海曙区德英乐幼儿园；地址2宁波市海曙区德英乐幼儿园；相似度：1.0
+地址1：宁波市市级机关第二幼儿园；地址2宁波市市级机关第二幼儿园；相似度：1.0
+地址1：宁波市闻裕顺幼儿园；地址2闻裕顺幼儿园；相似度：1.0
+地址1：宁波市海曙区高桥镇博泽学校；地址2高桥镇博泽学校；相似度：1.0
+地址1：宁波市鄞江中学；地址2鄞江中学；相似度：1.0
+地址1：宁波市外经贸幼儿园；地址2宁波市外经贸幼儿园；相似度：1.0
+地址1：宁波市海曙区国骅东方幼儿园；地址2国骅东方幼儿园；相似度：1.0
+地址1：杭州市余杭区贝贝幼儿园；地址2余杭区贝贝幼儿园；相似度：1.0
+地址1：杭州市余杭区径山镇双溪中心小学；地址2径山镇双溪中心小学；相似度：1.0
+地址1：德清县禹越镇徐家庄中心小学；地址2禹越镇徐家庄中心小学；相似度：1.0
+地址1：杭州绿城育华小学；地址2杭州绿城育华小学；相似度：1.0
+地址1：义乌市宗泽小学；地址2义乌市宗泽小学；相似度：1.0
+地址1：杭州万向职业技术学院；地址2杭州万向职业技术学院；相似度：1.0
+地址1：宁波市宝韵音乐幼儿园；地址2宝韵音乐幼儿园；相似度：1.0
+地址1：杭州市余杭区微时代幼儿园；地址2微时代幼儿园；相似度：1.0
+地址1：杭州市余杭区林苑学校；地址2杭州市余杭区林苑学校；相似度：1.0
+地址1：宁波市海曙区高桥镇联升佳苑幼儿园；地址2高桥镇联升佳苑幼儿园；相似度：1.0
+地址1：义乌市湖门小学；地址2义乌市湖门小学；相似度：1.0
+地址1：杭州市乔司职业高级中学；地址2杭州市乔司职业高级中学；相似度：1.0
+地址1：宁波市范桂馥小学；地址2宁波市范桂馥小学；相似度：1.0
+地址1：德清县钟管镇中心学校；地址2德清县钟管镇中心学校；相似度：1.0
+地址1：义乌市前店小学；地址2义乌市前店小学；相似度：1.0
+地址1：杭州市余杭区美好晨晖幼儿园；地址2美好晨晖幼儿园；相似度：1.0
+地址1：杭州市余杭区实验小学；地址2余杭区实验小学；相似度：1.0
+地址1：宁波市新芝小学；地址2宁波市新芝小学；相似度：1.0
+地址1：杭州西子实验学校；地址2杭州西子实验学校；相似度：1.0
+地址1：宁波市海曙区莲桥第幼儿园；地址2莲桥第幼儿园；相似度：1.0
+地址1：义乌市第三中学；地址2义乌市第三中学；相似度：1.0
+地址1：杭州市余杭区五常中学；地址2五常中学；相似度：1.0
+地址1：义乌市东洲第二幼儿园；地址2东洲第二幼儿园；相似度：1.0
+地址1：杭州市塘栖中学；地址2塘栖中学；相似度：1.0
+地址1：浙江工商职业技术学院；地址2浙江工商职业技术学院西门；相似度：0.9601448436288958
+地址1：杭州市公益中学；地址2杭州市公益中学；相似度：1.0
+地址1：义乌市树人中学；地址2树人中学；相似度：1.0
+地址1：德清县武康中学；地址2武康中学；相似度：1.0
+地址1：义乌复旦实验学校；地址2义乌复旦实验学校；相似度：1.0
+地址1：宁波市海曙区古林镇春蕾学校；地址2海曙区古林镇春蕾学校；相似度：1.0
+地址1：杭州市余杭区乔司中心小学；地址2杭州市余杭区乔司中心小学；相似度：1.0
+地址1：义乌市下骆宅小学；地址2下骆宅小学；相似度：1.0
+地址1：杭州市余杭区东湖世纪星幼儿园；地址2余杭区东湖世纪星幼儿园；相似度：1.0
+地址1：杭州市余杭区仁和第二幼儿园；地址2仁和第二幼儿园；相似度：1.0
+地址1：义乌市实验小学教育集团；地址2义乌市实验小学教育集团黎明湖校区；相似度：0.9575759858251772
+地址1：杭州市西湖区小桔灯幼儿园；地址2小桔灯幼儿园；相似度：1.0
+地址1：义乌市苏溪镇第一小学；地址2义乌市苏溪镇第一小学；相似度：1.0
+Traceback (most recent call last):
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/socket.py", line 954, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/http/client.py", line 1279, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/http/client.py", line 1325, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/http/client.py", line 1274, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/http/client.py", line 1034, in _send_output
+    self.send(msg)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/http/client.py", line 974, in send
+    self.connect()
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f5c4e2245b0>: Failed to establish a new connection: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/urllib3/util/retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&postStr=%7B%27lon%27%3A+120.103841%2C+%27lat%27%3A+29.299096%2C+%27ver%27%3A+1%7D&type=geocode (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f5c4e2245b0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/test.py", line 21, in <module>
+    correct1, uncorrect1, unsure1 = check_correct_origininfo(data)
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/main.py", line 22, in check_correct_origininfo
+    result, loc_v, address = tianditu.verify_loc_by_name(row_t['name'], loc)
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/tianditu_loc.py", line 171, in verify_loc_by_name
+    address, name_v = self.getaddressbyloc(loc_v)
+  File "/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/tianditu_loc.py", line 48, in getaddressbyloc
+    res=requests.get(url, params)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/lixuanyi/anaconda3/envs/edupre/lib/python3.9/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='api.tianditu.gov.cn', port=80): Max retries exceeded with url: /geocoder?parameters&tk=2423a38b3af5569af8aa521babc5e349&postStr=%7B%27lon%27%3A+120.103841%2C+%27lat%27%3A+29.299096%2C+%27ver%27%3A+1%7D&type=geocode (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f5c4e2245b0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/basic.py:29: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
   return  doc1.similarity(doc2)
 step1:天地图逆地址编码校验数据集坐标是否准确，原数据集1199个
-地址1：杭州市余杭区未来科技城海创小学；地址2杭州市余杭区杭州未来科技城海创小学；相似度：1.0
-地址1：宁波市海曙区鄞江镇燕玲学校；地址2宁波市海曙区大桥村鄞江镇燕玲学校；相似度：0.9066784860104016
-地址1：宁波市海曙区洞桥镇中心幼儿园；地址2宁波市海曙区洞桥镇中心幼儿园；相似度：1.0
-地址1：宁波市海曙区古林镇薛家小学；地址2宁波市海曙区古林镇薛家小学；相似度：1.0
-地址1：宁波市海曙区石碶街道实验小学；地址2宁波市海曙区石碶街道实验小学；相似度：1.0
-地址1：杭州市余杭区径山镇双溪幼儿园；地址2杭州市余杭区径山镇双溪幼儿园；相似度：1.0
-地址1：杭州市余杭区育海外国语学校；地址2杭州市余杭区杭州育海外国语学校；相似度：1.0
-地址1：义乌公学；地址2金华市义乌市义乌公学；相似度：1.0
-地址1：杭州市余杭区北湖绿洲幼儿园；地址2杭州市余杭区北湖绿洲幼儿园；相似度：1.0
-地址1：杭州市余杭区未来科技城海曙幼儿园；地址2杭州市余杭区未来科技城海曙幼儿园；相似度：1.0
-地址1：杭州市余杭区未来科技城海创幼儿园；地址2杭州市余杭区杭州未来科技城海创小学；相似度：1.0
-地址1：浙江新世纪经贸专修学院；地址2杭州市滨江区浙江新世纪经贸专修学院；相似度：0.9556750591762808
-地址1：义乌市龙回实验小学；地址2金华市义乌市龙回实验小学；相似度：1.0
-地址1：杭州市余杭区未来科技城海曙小学；地址2杭州市余杭区未来科技城海曙小学；相似度：1.0
-地址1：宁波市海曙区鄞江镇琴琴幼儿园；地址2宁波市海曙区鄞江镇琴琴幼儿园；相似度：1.0
-地址1：宁波市红旗幼儿园；地址2宁波市海曙区宁波红旗幼儿园；相似度：1.0
-地址1：宁波市闻裕顺幼儿园；地址2宁波市海曙区闻裕顺幼儿园；相似度：1.0
-地址1：义乌市稠城中心幼儿园；地址2金华市义乌市稠城中心幼儿园；相似度：1.0
-地址1：杭州市余杭卫生中等专业学校；地址2杭州市临平区杭州市余杭卫生中等专业学校；相似度：0.9314055891050794
-地址1：杭州市余杭区贝贝幼儿园；地址2杭州市余杭区贝贝幼儿园；相似度：1.0
-地址1：杭州市余杭区径山镇双溪中心小学；地址2杭州市余杭区径山镇双溪中心小学；相似度：1.0
-地址1：德清县禹越镇徐家庄中心小学；地址2湖州市德清县禹越镇徐家庄中心小学；相似度：1.0
-地址1：义乌市宗泽小学；地址2金华市义乌市宗泽小学；相似度：1.0
-地址1：杭州万向职业技术学院；地址2杭州市西湖区西溪路896号杭州万向职业技术学院；相似度：0.9232448234509971
-地址1：德清县新安镇下舍中心学校；地址2湖州市德清县新安镇下舍中心学校；相似度：1.0
-地址1：宁波市海曙区鄞江镇中心幼儿园；地址2宁波市海曙区鄞江镇中心幼儿园；相似度：1.0
-地址1：义乌市第三中学；地址2金华市义乌市第三中学；相似度：1.0
-地址1：义乌市佛堂镇塔山幼儿园；地址2金华市义乌市佛堂镇塔山幼儿园；相似度：1.0
-地址1：杭州市余杭区五常中学；地址2杭州市余杭区五常中学；相似度：1.0
-地址1：宁波市海曙区古林镇薛家幼儿园；地址2宁波市海曙区古林镇薛家幼儿园；相似度：1.0
-地址1：浙江工商职业技术学院；地址2宁波市海曙区机场路1988浙江工商职业技术学院浙江工商职业技术学院西门；相似度：0.958031859340174
-地址1：杭州市公益中学；地址2杭州市西湖区杭州市公益中学；相似度：1.0
-地址1：浙江交通职业技术学院；地址2杭州市余杭区莫干山路1515浙江交通职业技术学院浙江交通职业技术学院北门；相似度：0.9230633144561298
-地址1：杭州市余杭区仁和第二幼儿园；地址2杭州市余杭区仁和第二幼儿园；相似度：1.0
-地址1：宁波市新商业幼儿园；地址2宁波市海曙区宁波市新商业幼儿园；相似度：1.0
-地址1：义乌市春晗学校；地址2金华市义乌市春晗学校；相似度：1.0
-地址1：杭州市余杭区清水湾幼儿园；地址2杭州市余杭区杭州市余杭区清水湾幼儿园；相似度：1.0
-地址1：德清县求是高级中学；地址2湖州市德清县求是高级中学；相似度：1.0
-地址1：杭州市西湖区周浦幼儿园；地址2杭州市西湖区周浦幼儿园；相似度：1.0
-地址1：义乌市廿三里初级中学；地址2金华市义乌市廿三里初级中学；相似度：1.0
-地址1：义乌市荷叶塘初级中学；地址2金华市义乌市荷叶塘初级中学；相似度：1.0
-地址1：杭州市余杭区中泰中心幼儿园；地址2杭州市余杭区中泰中心幼儿园；相似度：1.0
-地址1：义乌市廿三里第一小学；地址2金华市义乌市廿三里第一小学；相似度：1.0
-地址1：义乌工商职业技术学院；地址2金华市义乌市学院路2号义乌工商职业技术学院；相似度：0.9314988277606026
-地址1：浙江特殊教育职业学院；地址2杭州市西湖区浙江特殊教育职业学院；相似度：1.0
-地址1：浙江师范大学杭州幼儿师范学院附属幼儿园；地址2金华市义乌市北苑路140号浙江师范大学杭州幼儿师范学院附属义乌幼儿园；相似度：0.902417402962135
-地址1：杭州市西湖区翠苑第四幼儿园；地址2杭州市西湖区杭州市西湖区翠苑第四幼儿园；相似度：1.0
-地址1：德清县二都小学；地址2湖州市德清县二都小学；相似度：1.0
-地址1：浙江体育职业技术学院；地址2杭州市萧山区浙江体育职业技术学院内浙江体育职业技术学院-餐厅；相似度：0.9455666040398956
-地址1：杭州市西湖区百家园路幼儿园；地址2杭州市西湖区百家园路；相似度：1.0
-地址1：中国人民解放军浙江省军区机关汪庄幼儿园；地址2泰州市高港区中国人民解放军海军诞生地纪念馆东南侧盛世观音；相似度：0.9258911583936307
-地址1：德清县千秋幼儿园；地址2湖州市德清县千秋幼儿园；相似度：1.0
-地址1：宁波市海曙区古林镇布政幼儿园；地址2宁波市海曙区古林镇布政幼儿园；相似度：1.0
-step1:天地图逆地址编码校验完成，正确坐标436个，错误坐标53个，未匹配坐标710个
-step2:获取天地图POI信息校验数据集坐标是否准确，待校验数据710个
-step2:获取天地图POI信息校验完成，正确坐标70个，错误坐标235个，未匹配坐标475个
-step3:高德逆地址编码校验数据集坐标是否准确，待校验数据集475个
-地址1：义乌市义亭镇王阡幼儿园；地址2           format_address2
-0  浙江省金华市义乌市义亭镇义乌市义亭镇王阡幼儿园；相似度：0.9301684868520498
-地址1：义乌市北苑街道时代花园优幼幼稚园；地址2                     format_address2
-0  浙江省金华市义乌市北苑街道义乌市时代花园优幼幼稚园时代花园丹溪三区；相似度：0.93088742946299
-地址1：宁波市海曙区高桥镇宝宝幼儿园；地址2     format_address2
-0  浙江省宁波市海曙区高桥镇宝宝幼儿园；相似度：1.0
-地址1：宁波市海曙区古林镇藕池小学；地址2    format_address2
-0  浙江省宁波市海曙区古林镇藕池小学；相似度：1.0
-地址1：宁波市海曙区横街镇中心初级中学；地址2            format_address2
-0  浙江省宁波市海曙区横街镇交石段横街镇中心初级中学；相似度：0.9052386082870691
-地址1：义乌市城西街道五星幼儿园；地址2      format_address2
-0  浙江省金华市义乌市城西街道五星幼儿园；相似度：1.0
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
+地址1：杭州市余杭区英特外国语学校；地址2杭州英特外国语学校；相似度：1.0
+地址1：浙江省杭州第七中学；地址2浙江省杭州第七中学；相似度：1.0
+地址1：宁波市海曙区古林镇薛家小学；地址2古林镇薛家小学；相似度：1.0
+地址1：宁波市海曙区石碶街道实验小学；地址2海曙区石碶街道实验小学；相似度：1.0
+地址1：杭州市余杭区径山镇双溪幼儿园；地址2径山镇双溪幼儿园；相似度：1.0
+地址1：义乌市金城高尔夫幼儿园；地址2金城高尔夫幼儿园；相似度：1.0
+地址1：杭州市余杭区育海外国语学校；地址2杭州育海外国语学校；相似度：1.0
+地址1：义乌市后宅街道鹤田幼儿园；地址2后宅街道鹤田幼儿园；相似度：1.0
+地址1：义乌公学；地址2义乌公学；相似度：1.0
+地址1：杭州市余杭区北湖绿洲幼儿园；地址2北湖绿洲幼儿园；相似度：1.0
+地址1：杭州市余杭区蒲公英学校；地址2杭州蒲公英学校；相似度：1.0
+地址1：宁波市海曙区镇明中心小学；地址2宁波市镇明中心小学；相似度：1.0
+地址1：浙江新世纪经贸专修学院；地址2浙江新世纪经贸专修学院；相似度：1.0
+地址1：杭州市余杭区未来科技城海云幼儿园；地址2余杭区未来科技城海曙幼儿园；相似度：0.9664027344393833
+地址1：杭州市余杭区未来科技城海曙小学；地址2余杭区未来科技城海曙小学；相似度：1.0
+地址1：杭州市余杭区凤凰幼儿园；地址2余杭区凤凰幼儿园；相似度：1.0
+地址1：宁波市海曙区古林镇中心小学；地址2古林镇中心小学；相似度：1.0
+地址1：浙江师范大学附属义乌实验学校；地址2浙江师范大学附属义乌实验学校；相似度：1.0
+地址1：宁波市海曙区古林镇蜃蛟小学；地址2海曙区古林镇蜃蛟小学；相似度：1.0
+地址1：宁波市红旗幼儿园；地址2宁波红旗幼儿园；相似度：1.0
+地址1：义乌市香山小学教育集团；地址2义乌市香山小学教育集团杨村校区；相似度：0.9588814623711364
+地址1：杭州市学军小学；地址2杭州市学军小学；相似度：1.0
+地址1：浙江省交通运输厅幼儿园；地址2浙江省交通运输厅幼儿园；相似度：1.0
+地址1：宁波市海曙区德英乐幼儿园；地址2宁波市海曙区德英乐幼儿园；相似度：1.0
+地址1：宁波市市级机关第二幼儿园；地址2宁波市市级机关第二幼儿园；相似度：1.0
+地址1：宁波市闻裕顺幼儿园；地址2闻裕顺幼儿园；相似度：1.0
+地址1：宁波市海曙区高桥镇博泽学校；地址2高桥镇博泽学校；相似度：1.0
+地址1：宁波市鄞江中学；地址2鄞江中学；相似度：1.0
+地址1：宁波市外经贸幼儿园；地址2宁波市外经贸幼儿园；相似度：1.0
+地址1：宁波市海曙区国骅东方幼儿园；地址2国骅东方幼儿园；相似度：1.0
+地址1：杭州市余杭区贝贝幼儿园；地址2余杭区贝贝幼儿园；相似度：1.0
+地址1：杭州市余杭区径山镇双溪中心小学；地址2径山镇双溪中心小学；相似度：1.0
+地址1：德清县禹越镇徐家庄中心小学；地址2禹越镇徐家庄中心小学；相似度：1.0
+地址1：杭州绿城育华小学；地址2杭州绿城育华小学；相似度：1.0
+地址1：义乌市宗泽小学；地址2义乌市宗泽小学；相似度：1.0
+地址1：杭州万向职业技术学院；地址2杭州万向职业技术学院；相似度：1.0
+地址1：宁波市宝韵音乐幼儿园；地址2宝韵音乐幼儿园；相似度：1.0
+地址1：杭州市余杭区微时代幼儿园；地址2微时代幼儿园；相似度：1.0
+地址1：杭州市余杭区林苑学校；地址2杭州市余杭区林苑学校；相似度：1.0
+地址1：宁波市海曙区高桥镇联升佳苑幼儿园；地址2高桥镇联升佳苑幼儿园；相似度：1.0
+地址1：义乌市湖门小学；地址2义乌市湖门小学；相似度：1.0
+地址1：杭州市乔司职业高级中学；地址2杭州市乔司职业高级中学；相似度：1.0
+地址1：宁波市范桂馥小学；地址2宁波市范桂馥小学；相似度：1.0
+地址1：德清县钟管镇中心学校；地址2德清县钟管镇中心学校；相似度：1.0
+地址1：义乌市前店小学；地址2义乌市前店小学；相似度：1.0
+地址1：杭州市余杭区美好晨晖幼儿园；地址2美好晨晖幼儿园；相似度：1.0
+地址1：杭州市余杭区实验小学；地址2余杭区实验小学；相似度：1.0
+地址1：宁波市新芝小学；地址2宁波市新芝小学；相似度：1.0
+地址1：杭州西子实验学校；地址2杭州西子实验学校；相似度：1.0
+地址1：宁波市海曙区莲桥第幼儿园；地址2莲桥第幼儿园；相似度：1.0
+地址1：义乌市第三中学；地址2义乌市第三中学；相似度：1.0
+地址1：杭州市余杭区五常中学；地址2五常中学；相似度：1.0
+地址1：义乌市东洲第二幼儿园；地址2东洲第二幼儿园；相似度：1.0
+地址1：杭州市塘栖中学；地址2塘栖中学；相似度：1.0
+地址1：浙江工商职业技术学院；地址2浙江工商职业技术学院西门；相似度：0.9601448436288958
+地址1：杭州市公益中学；地址2杭州市公益中学；相似度：1.0
+地址1：义乌市树人中学；地址2树人中学；相似度：1.0
+地址1：德清县武康中学；地址2武康中学；相似度：1.0
+地址1：义乌复旦实验学校；地址2义乌复旦实验学校；相似度：1.0
+地址1：宁波市海曙区古林镇春蕾学校；地址2海曙区古林镇春蕾学校；相似度：1.0
+地址1：杭州市余杭区乔司中心小学；地址2杭州市余杭区乔司中心小学；相似度：1.0
+地址1：义乌市下骆宅小学；地址2下骆宅小学；相似度：1.0
+地址1：杭州市余杭区东湖世纪星幼儿园；地址2余杭区东湖世纪星幼儿园；相似度：1.0
+地址1：杭州市余杭区仁和第二幼儿园；地址2仁和第二幼儿园；相似度：1.0
+地址1：义乌市实验小学教育集团；地址2义乌市实验小学教育集团黎明湖校区；相似度：0.9575759858251772
+地址1：杭州市西湖区小桔灯幼儿园；地址2小桔灯幼儿园；相似度：1.0
+地址1：义乌市苏溪镇第一小学；地址2义乌市苏溪镇第一小学；相似度：1.0
+地址1：德清县求是高级中学；地址2德清县求是高级中学；相似度：1.0
+地址1：杭州市余杭区临平第三小学；地址2杭州市余杭区临平第三小学；相似度：1.0
+地址1：杭州市西湖区智多星幼儿园；地址2杭州市西湖区智多星幼儿园；相似度：1.0
+地址1：宁波市海曙区章水镇中心小学；地址2章水镇中心小学；相似度：1.0
+地址1：杭州市余杭区径山镇长乐中心小学；地址2径山镇长乐中心小学；相似度：1.0
+地址1：杭州市西湖区大大树幼儿园；地址2杭州市西湖区大大树幼儿园；相似度：1.0
+地址1：义乌市群星外国语学校；地址2义乌市群星外国语学校；相似度：1.0
+地址1：杭州市余杭区天长世纪小学；地址2天长世纪小学；相似度：1.0
+地址1：杭州市西湖区翠苑第一幼儿园；地址2翠苑第一幼儿园；相似度：1.0
+地址1：宁波市海曙区樟村中学；地址2宁波市海曙区樟村中学；相似度：1.0
+地址1：杭州市西湖区周浦幼儿园；地址2周浦幼儿园；相似度：1.0
+地址1：义乌市荷叶塘初级中学；地址2义乌市荷叶塘初级中学；相似度：1.0
+地址1：杭州市余杭区中泰中心幼儿园；地址2余杭区中泰中心幼儿园；相似度：1.0
+地址1：杭州市余杭区树兰幼儿园；地址2树兰幼儿园；相似度：1.0
+地址1：杭州市余杭区东湖水漾幼儿园；地址2余杭区东湖水漾幼儿园；相似度：1.0
+/home/lixuanyi/code/compete/ccf-edupre/test/../txt2poi/basic.py:29: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
   return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-/home/lxy/code/compete/ccf_edupre/test/../txt2poi/basic.py:33: UserWarning: [W007] The model you're using has no word vectors loaded, so the result of the Doc.similarity method will be based on the tagger, parser and NER, which may not give useful similarity judgements. This may happen if you're using one of the small models, e.g. `en_core_web_sm`, which don't ship with word vectors and only use context-sensitive tensors. You can always add your own word vectors, or use one of the larger models instead if available.
-  return  doc1.similarity(doc2)
-地址1：义乌市江东街道叮叮幼儿园；地址2      format_address2
+地址1：义乌市廿三里第一小学；地址2廿三里第一小学；相似度：1.0
+地址1：杭州市长阳中学；地址2长阳中学；相似度：1.0
+地址1：义乌工商职业技术学院；地址2义乌工商职业技术学院；相似度：1.0
+地址1：浙江师范大学杭州幼儿师范学院附属幼儿园；地址2浙江师范大学杭州幼儿师范学院附属义乌幼儿园；相似度：1.0
+地址1：宁波国际文武学校；地址2宁波国际文武学校；相似度：1.0
+地址1：杭州市西湖区翠苑第四幼儿园；地址2杭州市西湖区翠苑第四幼儿园；相似度：1.0
+地址1：德清县二都小学；地址2二都小学；相似度：1.0
+地址1：德清县远望幼儿园；地址2远望幼儿园；相似度：1.0
+地址1：浙江体育职业技术学院；地址2浙江体育职业技术学院-餐厅；相似度：0.9509188727298129
+地址1：德清县筏头幼儿园；地址2德清县筏头幼儿园；相似度：1.0
+地址1：宁波市海曙区雅戈尔中学；地址2雅戈尔中学；相似度：1.0
+地址1：德清县千秋幼儿园；地址2德清县千秋幼儿园；相似度：1.0
+地址1：宁波市海曙区雅戈尔小学；地址2雅戈尔小学；相似度：1.0
+地址1：德清县春晖小学；地址2德清县春晖小学；相似度：1.0
+地址1：宁波市海曙区古林镇布政幼儿园；地址2古林镇布政幼儿园；相似度：1.0
+地址1：杭州市余杭区临平第一小学；地址2余杭区临平第一小学；相似度：1.0
+地址1：宁波市同济中学；地址2同济中学；相似度：1.0
+step1:天地图逆地址编码校验完成，正确坐标597个，错误坐标99个，未匹配坐标503个
+step2:获取天地图POI信息校验数据集坐标是否准确，待校验数据503个
+地址1：宁波市海曙区石碶街道冯家小学；地址2:石碶街道冯家小学；相似度：1.0
+地址1：宁波市东恩中学；地址2:东恩中学；相似度：1.0
+地址1：宁波市海曙区鄞江镇中心小学；地址2:鄞江镇中心小学；相似度：1.0
+地址1：宁波市海曙区高桥镇中心小学；地址2:海曙区高桥镇中心小学；相似度：1.0
+地址1：杭州市余杭区杭运幼儿园；地址2:余杭区杭运幼儿园；相似度：1.0
+地址1：义乌市城西街道中心幼儿园；地址2:义乌市城西街道中心幼儿园；相似度：1.0
+地址1：杭州市余杭区良渚第一小学；地址2:良渚第一小学；相似度：1.0
+地址1：杭州青年专修学院；地址2:杭州青年专修学院；相似度：1.0
+地址1：义乌市金鹰实验学校；地址2:金鹰实验学校；相似度：1.0
+地址1：西湖大学；地址2:西湖大学；相似度：1.0
+地址1：浙江科技学院；地址2:浙江科技学院；相似度：1.0
+地址1：浙江省杭州学军中学；地址2:杭州学军中学；相似度：1.0
+地址1：杭州市余杭区绿城育华蓝庭幼儿园；地址2:绿城育华蓝庭幼儿园；相似度：1.0
+地址1：德清县乾元镇第二幼儿园；地址2:乾元镇第二幼儿园；相似度：1.0
+地址1：杭州市余杭区大观山幼儿园；地址2:大观山幼儿园；相似度：1.0
+地址1：义乌市光煜艺术幼儿园；地址2:义乌市光煜艺术幼儿园；相似度：1.0
+地址1：杭州市钱塘外语学校；地址2:杭州市钱塘外语学校；相似度：1.0
+地址1：德清县中心幼儿园；地址2:德清县中心幼儿园；相似度：1.0
+地址1：杭州市余杭区良渚第一中学；地址2:余杭区良渚第一中学；相似度：1.0
+地址1：浙江交通职业技术学院；地址2:浙江交通职业技术学院；相似度：1.0
+地址1：德清县秋山中心学校；地址2:德清县秋山中心学校；相似度：1.0
+地址1：杭州市余杭区黄湖镇中心小学；地址2:余杭区黄湖镇中心小学；相似度：1.0
+地址1：杭州市余杭区小海豚幼儿园；地址2:小海豚幼儿园；相似度：1.0
+地址1：宁波市第二幼儿园；地址2:宁波市第二幼儿园；相似度：1.0
+地址1：杭州市良渚职业高级中学；地址2:杭州市良渚职业高级中学；相似度：1.0
+地址1：杭州市瓶窑中学；地址2:杭州市瓶窑中学；相似度：1.0
+地址1：杭州市西湖区回龙幼儿园；地址2:回龙幼儿园；相似度：1.0
+地址1：浙江外国语学院；地址2:浙江外国语学院；相似度：1.0
+地址1：杭州市余杭区崇贤第一小学；地址2:杭州市余杭区崇贤第一小学；相似度：1.0
+地址1：浙江音乐学院；地址2:浙江音乐学院；相似度：1.0
+地址1：浙江长征职业技术学院；地址2:浙江长征职业技术学院；相似度：1.0
+地址1：杭州市余杭区育才实验小学；地址2:杭州市余杭区育才实验小学；相似度：1.0
+地址1：杭州市余杭区太炎中学；地址2:余杭区太炎中学；相似度：1.0
+step2:获取天地图POI信息校验完成，正确坐标106个，错误坐标33个，未匹配坐标364个
+step3:高德逆地址编码校验数据集坐标是否准确，待校验数据集364个
+地址1：义乌市江东街道叮叮幼儿园；地址2:      format_address2
 0  浙江省金华市义乌市江东街道叮叮幼儿园；相似度：1.0
-地址1：宁波市海曙区鄞江镇梅园幼儿园；地址2     format_address2
-0  浙江省宁波市海曙区鄞江镇梅园幼儿园；相似度：1.0
-地址1：义乌市东方国际村幼儿园；地址2            format_address2
-0  浙江省金华市义乌市北苑街道国际村幼儿园东方国际村；相似度：0.9156980278579638
-地址1：义乌市江东街道彩虹幼儿园；地址2      format_address2
-0  浙江省金华市义乌市江东街道彩虹幼儿园；相似度：1.0
-地址1：国家海洋局第二海洋研究所；地址2                         format_address2
-0  浙江省杭州市西湖区西溪街道国家海洋局第二海洋研究所自然资源部第二海洋研究所；相似度：0.9584776244540313
-地址1：义乌市北苑街道佳爱幼儿园；地址2      format_address2
-0  浙江省金华市义乌市北苑街道佳爱幼儿园；相似度：1.0
-地址1：义乌市江东街道宗塘幼儿园；地址2      format_address2
-0  浙江省金华市义乌市江东街道宗塘幼儿园；相似度：1.0
-地址1：义乌市大陈镇大陈小学；地址2       format_address2
-0  浙江省金华市义乌市大陈镇义乌市大陈小学；相似度：1.0
-地址1：杭州市余杭区五常中心小学；地址2       format_address2
-0  浙江省杭州市余杭区五常街道五常中心小学；相似度：0.9149770040749421
-地址1：杭州市余杭区良渚文化村玉鸟幼儿园；地址2      format_address2
-0  浙江省杭州市余杭区良渚街道玉鸟幼儿园；相似度：0.9069747592313053
-地址1：义乌市稠城街道育优幼儿园；地址2      format_address2
-0  浙江省金华市义乌市稠城街道育优幼儿园；相似度：1.0
-地址1：德清县地理信息小镇幼儿园；地址2         format_address2
-0  浙江省湖州市德清县舞阳街道德清地理信息小镇；相似度：0.9057915352120736
-地址1：浙江音乐学院附属音乐学校；地址2                format_address2
-0  浙江省杭州市西湖区转塘街道浙江音乐学院戏剧系浙江音乐学院；相似度：0.9065635352349258
-step3:高德逆地址编码校验完成，正确坐标146个，错误坐标19个，未匹配坐标310个
-step4:获取高德POI信息校验数据集坐标是否准确，待校验数据310个
-step4:获取高德POI信息校验完成，正确坐标24个，错误坐标65个，未匹配坐标245个
-验证结束，正确坐标676个，错误坐标372个，未匹配坐标245个
+step3:高德逆地址编码校验完成，正确坐标182个，错误坐标143个，未匹配坐标39个
+step4:获取高德POI信息校验数据集坐标是否准确，待校验数据39个
+step4:获取高德POI信息校验完成，正确坐标2个，错误坐标0个，未匹配坐标37个
+验证结束，正确坐标887个，错误坐标275个，未匹配坐标37个

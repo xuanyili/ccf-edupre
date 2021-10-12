@@ -58,7 +58,7 @@ def _check_correct_infobypoi(data, poidata, type = 'tdt'):
                 loc2 = (x, y)
             loc1 = (float(data['point_x']), float(data['point_y']))
             distance = get_distance_byloc(loc1, loc2)
-            if distance < 50:
+            if distance < 60:
                 series = pd.Series({'verify_point_x': loc2[0], 'verify_point_y': loc2[1], 
             'verify_address': row_poi['name'], 'o_point_x': x, 'o_point_y': y})
                 correct_series = correct_series.append(series, ignore_index=True)
