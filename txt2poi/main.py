@@ -11,6 +11,14 @@ tianditukey = '2423a38b3af5569af8aa521babc5e349'
 gaodekey = '6977ecc8c25093a80583a1cb5b2e6155'
 baidukey = 'v4YOvobXA6CKDXzW2GjcrxAggIqByx7U'
 
+specifys = {
+    '西湖区': '156330106',
+    '余杭区': '156330110',
+    '义乌市': '156330782',
+    '德清县': '156330521',
+    '海曙区': '156330203'
+}
+
 def check_correct_origininfo(data):
     #check by tianditu api
     correct_locinfo = pd.DataFrame()
@@ -175,3 +183,62 @@ def check_correct_infobygetbdaddress(data):
     correct_locinfo = pd.concat([correct_locinfo, correct_series], axis=1)
     uncorrect_locinfo = pd.concat([uncorrect_locinfo, uncorrect_series], axis=1)
     return correct_locinfo, uncorrect_locinfo, notsure_locinfo
+
+def add_extrainfo_bypoi(poidata, existdata, type='tdt'):
+    extra_info = pd.DataFrame()
+    for i, row_poi in poidata.iterrows():
+        flag = False #flag表示POI INFO是否存在在原始数据中， True:存在
+        if type == 'gd':
+            (x, y) = (float(row_poi['gd_point_x']), float(row_poi['gd_point_y']))
+            lon0, lat0 = Gcj2Wgs_SimpleIteration(x, y)
+            row_poi['point_x'], row_poi['point_y'] = lon0, lat0
+            row_poi['specify'] = row_poi['region']
+            loc_poi = (lon0, lat0)
+        elif type == 'tdt':
+            loc_poi = (float(row_poi['point_x']), float(row_poi['point_y']))
+        for j, row_exi in existdata.iterrows():
+            loc_exi = (float(row_exi['point_x']), float(row_exi['point_y']))
+            distance = get_distance_byloc(loc_poi, loc_exi)
+            if distance < 100:
+                flag = True
+                break
+        if flag == False:
+            existdata = existdata.append(row_poi[['name', 'address', 'point_x', 'point_y','specify', 'dataType']], ignore_index=True)
+            extra_info = extra_info.append(row_poi[['name', 'address', 'point_x', 'point_y','specify', 'dataType']], ignore_index=True)
+    return extra_info
+
+def add_allextrainfo_bypoi(data):
+    all_extra_info = pd.DataFrame()
+    # tdtpoiinfo = tianditu_api(tianditukey).getallpoiinfo()
+    # gdpoiinfo = gaode_api(gaodekey).getallpoiinfo()
+    # bdpoiinfo = baidu_api(baidukey).getallpoiinfo()
+    bdpoiinfo = pd.read_csv('../../data/info/baidupoi_info.csv', encoding='gbk')
+    tdtpoiinfo = pd.read_csv('../../data/info/tianditu_schoolinfo.csv', encoding='gbk')
+    gdpoiinfo = pd.read_csv('../../data/info/gaode_schoolinfo.csv', encoding='gbk')
+
+    for specify in specifys:
+        exist = data.groupby(['specify']).get_group(specify)
+        tdtpoi = tdtpoiinfo.groupby(['specify']).get_group(specify)
+        gdpoi = gdpoiinfo.groupby(['region']).get_group(specify)
+        bdpoi = bdpoiinfo.groupby(['region']).get_group(specify)
+        extratdt = add_extrainfo_bypoi(tdtpoi, exist)
+        extratdt['tag'] = 'tdt'
+        print('STEP1:天地图POI在{}检测到{}个新增学校'.format(specify, len(extratdt)))
+        all_extra_info = all_extra_info.append(extratdt, ignore_index=True)
+        
+        exist = exist.append(extratdt, ignore_index=True)
+
+        extragd = add_extrainfo_bypoi(gdpoi, exist, type='gd')
+        extragd['tag'] = 'gd'
+        print('STEP2:高德POI在{}检测到{}个新增学校'.format(specify, len(extragd)))
+        all_extra_info = all_extra_info.append(extragd, ignore_index=True)
+        exist = exist.append(extragd, ignore_index=True)
+
+        extrabd = add_extrainfo_bypoi(bdpoi, exist, type='gd')
+        extrabd['tag'] = 'bd'
+        print('STEP3:百度POI在{}检测到{}个新增学校'.format(specify, len(extrabd)))
+        all_extra_info = all_extra_info.append(extrabd, ignore_index=True)
+        exist = exist.append(extrabd, ignore_index=True)
+
+    print('检测结束--共检测到新增学校{}个'.format(len(all_extra_info)))
+    return all_extra_info

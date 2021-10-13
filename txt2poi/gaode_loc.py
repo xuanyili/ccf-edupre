@@ -196,7 +196,7 @@ class gaode_api(object):
                 _info = self.get_poiinfo(type, region)
                 info = info.append(_info, ignore_index=True)
         return info
-    
+
     def verify_loc_by_name(self, name, loc_o):
     #  1:验证成功; -1:验证失败
         result, loc_v, add = self.getloc_byinputtips(name)
