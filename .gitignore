@@ -1,0 +1,6 @@
+school_predict/__pycache__/autoARIMA.cpython-39.pyc
+school_predict/__pycache__/lgb.cpython-39.pyc
+school_predict/__pycache__/panet.cpython-39.pyc
+school_predict/__pycache__/polynomial.cpython-39.pyc
+school_predict/.temp_test.csv
+school_predict/.temp_train.csv
