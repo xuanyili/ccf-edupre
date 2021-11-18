@@ -51,4 +51,6 @@ def panet(df_data, col_x, col_y, predict_range):
     with torch.no_grad():
         results = cn_panet(predict_x)
         results = results * 1000
-    return results.view(-1).numpy().tolist()
+        results_train = cn_panet(x)
+        results_train = results_train * 1000
+    return results.view(-1).numpy().tolist(), results_train.view(-1).numpy().tolist()

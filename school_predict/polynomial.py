@@ -11,4 +11,5 @@ def polynomial(df_data, col_x, col_y, predict_range):
     b=np.poly1d(a)#拟合完之后用这个函数来生成多项式对象
     predict_x = [x[-1] + i for i in range(1, predict_range + 1)]
     p=b(predict_x)
-    return p
+    p_train = b(x)
+    return p.tolist(), p_train.tolist()

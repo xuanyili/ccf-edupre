@@ -61,4 +61,4 @@ def autoARIMA(df_data, col_x, col_y, predict_range):
 
     # 第四步:进行预测
     forecast = model.predict(n_periods=predict_range)
-    return forecast
+    return forecast.tolist(), None

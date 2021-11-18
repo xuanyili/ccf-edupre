@@ -34,5 +34,6 @@ def lgbm(df_data, col_xs, col_y, df_test):
                     lgb_train,
                     num_boost_round=2000)
     # 模型预测
-    y_pred = gbm.predict(X_test, num_iteration=gbm.best_iteration)
-    return y_pred
+    y_test = gbm.predict(X_test, num_iteration=gbm.best_iteration)
+    y_train = gbm.predict(X_train, num_iteration=gbm.best_iteration)
+    return y_test.tolist(), y_train.tolist()
