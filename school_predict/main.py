@@ -19,9 +19,9 @@ from lgb import lgbm
 
 def plot(x, y1, y2, path):
     if len(y2) > len(y1):
-        x = x + x + [x[-1] + i for i in range(len(y2) - len(y1))]
+        x = x + x + [x[-1] + i for i in range(1, len(y2) - len(y1) + 1)]
     else:
-        x = x + [x[-1] + i for i in range(len(y2))]
+        x = x + [x[-1] + i for i in range(1, len(y2) + 1)]
     y = y1 + y2
     c = ['True'] * len(y1) + ['Pred'] * len(y2)
     df_data = pd.DataFrame({'X':x, 'Y':y, 'Class': c}, columns=['X', 'Y', 'Class'])
@@ -29,6 +29,16 @@ def plot(x, y1, y2, path):
 
     plt.savefig(path, dpi=400)
     plt.close()
+
+def tocsv(x, y1, y2, path):
+    if len(y2) > len(y1):
+        x = x + x + [x[-1] + i for i in range(1, len(y2) - len(y1) + 1)]
+    else:
+        x = x + [x[-1] + i for i in range(1, len(y2) + 1)]
+    y = y1 + y2
+    c = ['True'] * len(y1) + ['Pred'] * len(y2)
+    df_data = pd.DataFrame({'X':x, 'Y':y, 'Class': c}, columns=['X', 'Y', 'Class'])
+    df_data.to_csv(path)
 
 def predict_xs(submodel, pop_data, x, ys, predict_range, add_x=True):
     
@@ -58,11 +68,11 @@ if __name__ == '__main__':
             help='model name, must be arima, poly, panet, lgbm')
     parser.add_argument('--submodel', default='arima',
             help='submodel name, must be arima, poly, panet')
-    parser.add_argument('--predict_range', type=int,default='5',
+    parser.add_argument('--predict_range', type=int,default='6',
             help='predict range')
     opt = parser.parse_args()
     edu_data = pd.read_csv('../data/schoolinfo.csv', encoding='gbk')
-
+    print('Model:' + opt.model + ' SubModel:' + opt.submodel)
     sns.set_theme(style="whitegrid")
 
     edu_type = ['学前教育', '初等教育', '中等教育']
@@ -124,6 +134,7 @@ if __name__ == '__main__':
             print(format_str)
 
         plot(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/figure/' + figure_name + '.png')
+        tocsv(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/table/' + figure_name + '.csv')
     predict_value = ['幼儿园平均人数', '小学平均人数', '中学平均人数']
 
     for p in predict_value:
@@ -144,6 +155,7 @@ if __name__ == '__main__':
             print('Wrong model type')
             exit
         plot(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/figure/' + figure_name + '.png')
+        tocsv(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/table/' + figure_name + '.csv')
 
         print('未来五年' + p + '的发展趋势为：')
         format_str = ''
