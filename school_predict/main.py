@@ -154,8 +154,8 @@ if __name__ == '__main__':
         else:
             print('Wrong model type')
             exit
-        plot(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/figure/' + figure_name + '.png')
-        tocsv(pop_data['年份'].to_list(), pop_data[predict_value[i]].to_list(),  res_ + res if not res_ == None else res, '../data/table/' + figure_name + '.csv')
+        plot(pop_data['年份'].to_list(), pop_data[p].to_list(),  res_ + res if not res_ == None else res, '../data/figure/' + figure_name + '.png')
+        tocsv(pop_data['年份'].to_list(), pop_data[p].to_list(),  res_ + res if not res_ == None else res, '../data/table/' + figure_name + '.csv')
 
         print('未来五年' + p + '的发展趋势为：')
         format_str = ''
