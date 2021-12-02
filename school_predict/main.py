@@ -244,7 +244,7 @@ if __name__ == '__main__':
         plot_mse(all_models1, all_classes1, all_losses1,  '../data/figure/MSE_学校数量.png')
         plot_mse(all_models2, all_classes2, all_losses2, '../data/figure/MSE_学校规模_学生.png')
         plot_mse(all_models3, all_classes3, all_losses3, '../data/figure/MSE_学校规模_教职工.png')
-        tocsv_mse(all_models1, all_classes1, all_losses1,  '../data/figure/MSE_学校数量.csv')
-        tocsv_mse(all_models2, all_classes2, all_losses2, '../data/figure/MSE_学校规模_学生.cvs')
-        tocsv_mse(all_models3, all_classes3, all_losses3, '../data/figure/MSE_学校规模_教职工.csv')
+        tocsv_mse(all_models1, all_classes1, all_losses1,  '../data/table/MSE_学校数量.csv')
+        tocsv_mse(all_models2, all_classes2, all_losses2, '../data/table/MSE_学校规模_学生.csv')
+        tocsv_mse(all_models3, all_classes3, all_losses3, '../data/table/MSE_学校规模_教职工.csv')
         
