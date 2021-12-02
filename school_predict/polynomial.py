@@ -5,7 +5,7 @@ import pandas as pd
 def polynomial(df_data, col_x, col_y, predict_range):
     data = df_data
 
-    scale = 10
+    scale = 3
     if col_y == '小学数':
         scale = 3
     elif col_y == '幼儿园数':
@@ -19,7 +19,7 @@ def polynomial(df_data, col_x, col_y, predict_range):
     elif col_y == '幼儿园平均人数':
         scale = 10
     else:
-        scale = 10
+        scale = 3
 
     x = data[col_x].to_list()
     y = data[col_y].to_list()

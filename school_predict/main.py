@@ -65,8 +65,6 @@ def predict_xs(submodel, pop_data, x, ys, predict_range, add_x=True):
         col_xs.append(x)
 
     df_test = pd.DataFrame(X_test, columns=col_xs)
-    df_test.to_csv('.temp_test.csv', header=False, index=False)
-    df_test = pd.read_csv('.temp_test.csv', header=None)
     return df_test
 
 if __name__ == '__main__':
@@ -123,6 +121,10 @@ if __name__ == '__main__':
         all_models2 = []
         all_classes2 = []
         all_losses2 = []
+
+        all_models3 = []
+        all_classes3 = []
+        all_losses3 = []
     else:
         print('Model:' + opt.model + ' SubModel:' + opt.submodel)
         models = [opt.model]
@@ -130,7 +132,7 @@ if __name__ == '__main__':
     for model in models:
         for submodel in submodels:
             if model == 'lgbm':
-                df_test = predict_xs(submodel, pop_data, '年份', ['人均余额','总人口数(万人)','常驻人口数(万人)'], opt.predict_range)
+                df_test = predict_xs(submodel, pop_data, '年份', ['人均余额','总人口数(万人)','常驻人口数(万人)', '幼儿园平均人数', '小学平均人数', '中学平均人数'], opt.predict_range)
             elif model != submodel:
                 continue
             if opt.eval:
@@ -201,6 +203,40 @@ if __name__ == '__main__':
                     all_models2.append(model if model != 'lgbm' else model + '_' + submodel[:2])
                     all_classes2.append(p)
                     all_losses2.append(mean_squared_error(pop_eval_data[p].to_list(), res))
+
+            predict_value = ['幼儿园平均教职工数', '小学平均教职工数', '中学平均教职工数']
+            for p in predict_value:
+                if model != 'lgbm':
+                    figure_name = model + '_' + p
+                else:
+                    figure_name = model + '_' + submodel + '_' + p
+                if model == 'arima':
+                    res, res_ = autoARIMA(pop_data, '年份', p, opt.predict_range)
+                elif model == 'poly':
+                    res, res_ = polynomial(pop_data, '年份', p, opt.predict_range)
+                elif model == 'panet':
+                    res, res_ = panet(pop_data, '年份', p, opt.predict_range)
+                elif model == 'lgbm':
+                    col_xs = ['年份','人均余额','总人口数(万人)','常驻人口数(万人)', '幼儿园平均人数', '小学平均人数', '中学平均人数']
+                    res, res_ = lgbm(pop_data, col_xs, p, df_test)
+                else:
+                    print('Wrong model type')
+                    exit
+                if not opt.eval:
+                    plot(pop_data['年份'].to_list(), pop_data[p].to_list(),  res_ + res if not res_ == None else res, '../data/figure/' + figure_name + '.png')
+                    tocsv(pop_data['年份'].to_list(), pop_data[p].to_list(),  res_ + res if not res_ == None else res, '../data/table/' + figure_name + '.csv')
+
+                    print('未来五年' + p + '的发展趋势为：')
+                    format_str = ''
+                    for r in res[:-1]:
+                        format_str += str(int(r)) + ', '
+                    format_str += str(int(res[-1]))
+                    print(format_str)
+                else:
+                    all_models3.append(model if model != 'lgbm' else model + '_' + submodel[:2])
+                    all_classes3.append(p)
+                    all_losses3.append(mean_squared_error(pop_eval_data[p].to_list(), res))
     if opt.eval:
         plot_mse(all_models1, all_classes1, all_losses1,  '../data/figure/MSE_学校数量.png')
-        plot_mse(all_models2, all_classes2, all_losses2, '../data/figure/MSE_学校规模.png')
+        plot_mse(all_models2, all_classes2, all_losses2, '../data/figure/MSE_学校规模_学生.png')
+        plot_mse(all_models3, all_classes3, all_losses3, '../data/figure/MSE_学校规模_教职工.png')

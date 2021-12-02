@@ -36,11 +36,17 @@ def panet(df_data, col_x, col_y, predict_range):
     elif col_y == '中学平均人数':
         scale = 10
     elif col_y == '小学平均人数':
-        scale = 20
+        scale = 10
     elif col_y == '幼儿园平均人数':
         scale = 2
+    elif col_y == '幼儿园平均教职工数':
+        scale = 0.6
+    elif col_y == '小学平均教职工数':
+        scale = 1
+    elif col_y == '中学平均教职工数':
+        scale = 1
     else:
-        scale = 1000
+        scale = 1
     cp = cp / scale
     predict_x = [[x[-1] + i - x[0]] for i in range(1, predict_range + 1)]
 

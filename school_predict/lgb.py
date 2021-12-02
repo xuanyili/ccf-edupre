@@ -12,14 +12,16 @@ def lgbm(df_data, col_xs, col_y, df_test):
     X_train = df_train.drop(0, axis=1)
     # 为lightgbm准备Dataset格式数据
     lgb_train = lgb.Dataset(X_train, y_train)
-    X_test = df_test
+    X_test = df_test[col_xs]
+    X_test.to_csv('.temp_test.csv', header=False, index=False)
+    X_test = pd.read_csv('.temp_test.csv', header=None)
 
     # 参数设置
     params = {
         'boosting_type': 'gbdt',
         'objective': 'regression',
         'metric': {'l2', 'l1'},
-        'num_leaves': 4,
+        'num_leaves': 7,
         'learning_rate': 0.05,
         'min_data_in_leaf': 1,
         'feature_fraction': 0.9,
