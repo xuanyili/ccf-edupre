@@ -18,11 +18,8 @@ from sklearn.metrics import mean_squared_error
 #     return df_data['xxlb'].value_counts()
 
 def plot_mse(m, c, l, path):
-    print(m)
-    print(c)
-    print(l)
     df_data = pd.DataFrame({'model':m, 'class':c, 'MSE': l}, columns=['model', 'class', 'MSE'])
-    sns.barplot(data=df_data, x='model', y='loss', hue="class")
+    sns.barplot(data=df_data, x='model', y='MSE', hue="class")
 
     plt.savefig(path, dpi=400)
     plt.close()
@@ -135,6 +132,8 @@ if __name__ == '__main__':
                 df_test = predict_xs(submodel, pop_data, '年份', ['人均余额','总人口数(万人)','常驻人口数(万人)'], opt.predict_range)
             elif model != submodel:
                 continue
+            if opt.eval:
+                print("== Start to eval", model, submodel if model == 'lgbm' else '')
             predict_value = ['幼儿园数', '小学数', '中学数']
             for i in range(len(predict_value)):
                 if model != 'lgbm':
