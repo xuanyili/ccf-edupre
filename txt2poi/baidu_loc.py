@@ -82,7 +82,7 @@ class baidu_api(object):
             'width': str(width),
             'height': str(height),
             'zoom': str(zoom),
-            'coordtype': 'wgs84ll',
+            'coordtype': 'gcj02ll',
             'markers': str(loc[0])+','+str(loc[1])
         }
         res=requests.get(url, params)
