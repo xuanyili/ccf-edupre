@@ -80,6 +80,7 @@ if __name__ == '__main__':
     parser.add_argument('--eval', default=False, action='store_true',
             help='eval')
     opt = parser.parse_args()
+    plt.rcParams['font.sans-serif'] = ['simhei']
     sns.set_theme(style="whitegrid")
 
     pop_data = pd.read_excel('../data/经济人口信息.xlsx')
@@ -125,7 +126,7 @@ if __name__ == '__main__':
     else:
         print('Model:' + opt.model + ' SubModel:' + opt.submodel)
         models = [opt.model]
-        submodels = [opt.submodel]
+        submodels = [opt.submodel if opt.model == 'lgbm' else opt.model]
     for model in models:
         for submodel in submodels:
             if model == 'lgbm':
