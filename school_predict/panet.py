@@ -1,7 +1,15 @@
 # 导入相应包
 import torch
 import torch.nn.functional as F
+import numpy as np
+import random
 
+def setup_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
 
 class PAnet(torch.nn.Module):
     def __init__(self, n_feature, n_hidden, n_output, hidden_num=1):
@@ -50,6 +58,8 @@ def panet(df_data, col_x, col_y, predict_range):
     cp = cp / scale
     predict_x = [[x[-1] + i - x[0]] for i in range(1, predict_range + 1)]
 
+    # 设置随机数种子
+    setup_seed(20)
     EPOCH = 20000 # 训练次数
     LR = 0.00001 # 学习率
     HIDDEN_SIZE = 64 # 隐藏层网络宽度
