@@ -18,6 +18,7 @@ from sklearn.metrics import mean_squared_error
 #     return df_data['xxlb'].value_counts()
 
 def plot_mse(m, c, l, path):
+    plt.rcParams['font.sans-serif'] = ['simhei']
     df_data = pd.DataFrame({'model':m, 'class':c, 'MSE': l}, columns=['model', 'class', 'MSE'])
     sns.barplot(data=df_data, x='model', y='MSE', hue="class")
 
